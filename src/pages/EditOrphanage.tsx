@@ -27,7 +27,7 @@ import {
   AcceptContainer,
 } from "../styles/pages/create-orphanage";
 import { InputBlock, ConfirmButton } from "../styles/global";
-import { Orphanage, OrphanageParams } from "./Orphanage";
+import { OrphanageParams } from "./Orphanage";
 
 interface Image {
   url: string;
