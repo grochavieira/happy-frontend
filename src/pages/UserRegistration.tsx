@@ -13,9 +13,11 @@ import Panel from "../components/Panel";
 import GoBack from "../components/GoBack";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 export default function UserRegistration() {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [name, setName] = useState("");
@@ -24,21 +26,26 @@ export default function UserRegistration() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   async function handleUserRegistration() {
+    setLoading(true);
     if (password.length >= 6) {
       if (password === confirmPassword) {
-        const { data } = await api.post("/users", {
-          name,
-          email,
-          password,
-        });
+        try {
+          const { data } = await api.post("/users", {
+            name,
+            email,
+            password,
+          });
 
-        console.log(data.error);
-
-        if (data.success) {
-          toast.success(data.success);
-          history.push("/login");
-        } else if (data.error) {
-          toast.warn(data.error);
+          if (data.success) {
+            toast.success(data.success);
+            history.push("/login");
+          } else if (data.error) {
+            toast.warn(data.error);
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+          toast.error("não foi possível realizar o cadastro!");
         }
       } else {
         toast.warn("as senhas não batem!");
@@ -46,11 +53,13 @@ export default function UserRegistration() {
     } else {
       toast.warn("senha precisa ter no mínimo 6 carácteres!");
     }
+    setLoading(false);
   }
 
   return (
     <>
       <GoBack route="/login" />
+      {loading && <Loading />}
       <Container>
         <Panel />
         <Form>

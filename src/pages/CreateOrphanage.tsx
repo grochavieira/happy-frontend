@@ -15,7 +15,7 @@ import { ThemeContext } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
-
+import Loading from "../components/Loading";
 import {
   Container,
   Form,
@@ -34,6 +34,7 @@ interface Image {
 export default function CreateOrphanage() {
   const history = useHistory();
   const { title } = useContext(ThemeContext);
+  const [loading, setLoading] = useState(false);
   const [userLocation, setUserLocation] = useState({
     latitude: -20.7104846,
     longitude: -46.5521557,
@@ -77,7 +78,7 @@ export default function CreateOrphanage() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
+    setLoading(true);
     try {
       const { latitude, longitude } = position;
 
@@ -97,20 +98,12 @@ export default function CreateOrphanage() {
       });
 
       await api.post("orphanages", data);
-
-      console.log({
-        name,
-        about,
-        instructions,
-        opening_hours,
-        latitude,
-        longitude,
-        open_on_weekends,
-      });
+      setLoading(false);
 
       toast.success("Orfanato cadastrado com sucesso!");
       history.push("/success");
     } catch (error) {
+      setLoading(false);
       toast.error("Não foi possível realizar o cadastro!");
     }
   }
@@ -145,7 +138,7 @@ export default function CreateOrphanage() {
   return (
     <Container>
       <Sidebar />
-
+      {loading && <Loading />}
       <main>
         <Form onSubmit={handleSubmit}>
           <Fieldset>

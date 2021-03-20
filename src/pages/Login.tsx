@@ -13,10 +13,12 @@ import GoBack from "../components/GoBack";
 import AuthContext from "../contexts/auth";
 import crypto from "crypto-js";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const history = useHistory();
   const { signIn, signed } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -47,7 +49,9 @@ export default function Login() {
   }, []);
 
   async function handleLogin() {
+    setLoading(true);
     const isLoginSucceded = await signIn({ email, password });
+    setLoading(false);
     if (isLoginSucceded) {
       if (isLoginSaved) {
         const crypto_key = process.env.REACT_APP_CRYPTO_KEY || "";
@@ -70,6 +74,7 @@ export default function Login() {
   return (
     <>
       <GoBack route="/" />
+      {loading && <Loading />}
       <Container>
         <Panel />
         <Form>

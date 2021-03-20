@@ -13,10 +13,12 @@ import {
 } from "../styles/global";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import Loading from "../components/Loading";
 
 export default function ForgotPassword() {
   const history = useHistory();
 
+  const [loading, setLoading] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -25,19 +27,28 @@ export default function ForgotPassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleResetPassword = async () => {
+    setLoading(true);
     if (password.length >= 6) {
       if (password === confirmPassword) {
-        const { data } = await api.post("/password-reset", {
-          token,
-          email,
-          password,
-        });
+        try {
+          const { data } = await api.post("/password-reset", {
+            token,
+            email,
+            password,
+          });
 
-        if (data.success) {
-          toast.success(data.success);
-          history.push("/login");
-        } else if (data.error) {
-          toast.warn(data.success);
+          console.log(data);
+
+          if (data.success) {
+            toast.success(data.success);
+            history.push("/login");
+          } else if (data.error) {
+            toast.warn(data.error);
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+          toast.error("não foi possível trocar a senha!");
         }
       } else {
         toast.warn("as senhas não batem!");
@@ -45,11 +56,13 @@ export default function ForgotPassword() {
     } else {
       toast.warn("senha precisa ter no mínimo 6 carácteres!");
     }
+    setLoading(false);
   };
 
   return (
     <>
       <GoBack route="/login" />
+      {loading && <Loading />}
       <Container>
         <Panel />
         <Form>

@@ -16,6 +16,7 @@ import {
 } from "../styles/pages/orphanage";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 export interface Orphanage {
   id: number;
@@ -53,12 +54,18 @@ export default function Orphanage() {
   }, [params.id]);
 
   if (!orphanage) {
-    return <p>Carregando...</p>;
+    return (
+      <>
+        <Container>
+          <Sidebar />
+          <Loading />
+        </Container>
+      </>
+    );
   }
   return (
     <Container>
       <Sidebar />
-
       <main>
         <Details>
           <img

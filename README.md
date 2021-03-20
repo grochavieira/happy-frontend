@@ -69,6 +69,7 @@ O site pode ser acessado no link abaixo:
   - [x] Limitação de Rotas para usuários sem Login no sistema;
   - [x] Notificações com Toastify;
   - [x] Tema dark;
+  - [x] Animação de loading com lottie;
 
 ---
 
@@ -127,6 +128,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[Context](https://pt-br.reactjs.org/docs/context.html)**
 - **[cryptojs](https://www.npmjs.com/package/crypto-js)**
 - **[react-toastify](https://fkhadra.github.io/react-toastify/introduction)**
+- **[react-lottie](https://www.npmjs.com/package/react-lottie)**
 
 > Veja o arquivo [package.json](https://github.com/grochavieira/happy-frontend/blob/master/package.json)
 

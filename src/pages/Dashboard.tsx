@@ -10,14 +10,17 @@ import OrphanageItem from "../components/OrphanageItem";
 import { Orphanage } from "./Orphanage";
 import noOrphanagesImg from "../images/no-orphanages.svg";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 export default function Dashboard() {
+  const [loading, setLoading] = useState(false);
   const [acceptedOrphanages, setAcceptedOrphanages] = useState<Orphanage[]>([]);
   const [pendingOrphanages, setPendingOrphanages] = useState<Orphanage[]>([]);
   const [showAcceptedOrphanages, setShowAcceptedOrphanages] = useState(true);
 
   useEffect(() => {
     async function getOrphanages() {
+      setLoading(true);
       const { data } = await api.get("/orphanages");
       setAcceptedOrphanages(
         data.filter((orphanage: Orphanage) => orphanage.is_accepted)
@@ -25,6 +28,7 @@ export default function Dashboard() {
       setPendingOrphanages(
         data.filter((orphanage: Orphanage) => !orphanage.is_accepted)
       );
+      setLoading(false);
     }
 
     getOrphanages();
@@ -36,6 +40,7 @@ export default function Dashboard() {
         showAcceptedOrphanages={showAcceptedOrphanages}
         setShowAcceptedOrphanages={setShowAcceptedOrphanages}
       />
+      {loading && <Loading />}
       <Container>
         <Header>
           <h2>

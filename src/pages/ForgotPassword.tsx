@@ -5,14 +5,16 @@ import { Container } from "../styles/pages/forgot-password";
 import { Form, InputBlock, ConfirmButton, Fieldset } from "../styles/global";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 export default function ForgotPassword() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
   const handleForgotPassword = async () => {
-    console.log(email);
+    setLoading(true);
     const { data } = await api.post("/forgot-password", { email });
-
+    setLoading(false);
     if (data.success) {
       toast.success(data.success);
     } else if (data.error) {
@@ -23,6 +25,7 @@ export default function ForgotPassword() {
   return (
     <>
       <GoBack route="/login" />
+      {loading && <Loading />}
       <Container>
         <Panel />
         <Form>

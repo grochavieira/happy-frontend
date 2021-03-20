@@ -16,7 +16,7 @@ import { ThemeContext } from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
-
+import Loading from "../components/Loading";
 import {
   Container,
   Form,
@@ -38,6 +38,7 @@ export default function CreateOrphanage() {
   const history = useHistory();
   const params = useParams<OrphanageParams>();
   const { title } = useContext(ThemeContext);
+  const [loading, setLoading] = useState(false);
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
   const [id, setId] = useState(0);
   const [name, setName] = useState("");
@@ -53,6 +54,7 @@ export default function CreateOrphanage() {
 
   useEffect(() => {
     async function loadOrphanages() {
+      setLoading(true);
       const { data: orphanage } = await api.get(`/orphanages/${params.id}`);
 
       setId(orphanage.id);
@@ -69,6 +71,7 @@ export default function CreateOrphanage() {
       setSavedImages(orphanage.images);
       setPreviewImages(orphanage.images);
       setIsAccepted(orphanage.is_accepted);
+      setLoading(false);
     }
     loadOrphanages();
   }, [is_accepted, params.id]);
@@ -84,7 +87,7 @@ export default function CreateOrphanage() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
+    setLoading(true);
     try {
       const { latitude, longitude } = position;
 
@@ -107,32 +110,27 @@ export default function CreateOrphanage() {
       });
 
       await api.put("orphanages", data);
-
-      console.log({
-        name,
-        about,
-        instructions,
-        opening_hours,
-        latitude,
-        longitude,
-        open_on_weekends,
-      });
+      setLoading(false);
 
       toast.success("Pedido aceito com sucesso!");
       history.push("/");
     } catch (error) {
+      setLoading(false);
       toast.error("Não foi possível aceitar o pedido!");
     }
   }
 
   async function handleReject() {
+    setLoading(true);
     try {
       await api.delete(`/orphanages/${params.id}`);
 
       toast.success("Pedido rejeitado com sucesso!");
 
+      setLoading(false);
       history.push("/");
     } catch (error) {
+      setLoading(false);
       toast.error("Não foi possível rejeitar o pedido!");
     }
   }
@@ -173,6 +171,7 @@ export default function CreateOrphanage() {
   return (
     <Container>
       <Sidebar />
+      {loading && <Loading />}
 
       <main>
         <Form onSubmit={handleSubmit}>

@@ -7,10 +7,12 @@ import { Orphanage, OrphanageParams } from "./Orphanage";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 export default function SuccessfulRegistration() {
   const history = useHistory();
   const params = useParams<OrphanageParams>();
+  const [loading, setLoading] = useState(false);
   const [orphanage, setOrphanage] = useState<Orphanage>();
 
   useEffect(() => {
@@ -22,12 +24,15 @@ export default function SuccessfulRegistration() {
   }, [params.id]);
 
   const handleOrphanageDelete = async () => {
+    setLoading(true);
     try {
       const response = await api.delete(`/orphanages/${params.id}`);
-      console.log(response);
+      setLoading(false);
+
       toast.success("Orfanato excluído com sucesso");
       history.push("/");
     } catch (error) {
+      setLoading(false);
       toast.error("Não foi possível deletar o orfanato!");
     }
   };
@@ -37,6 +42,7 @@ export default function SuccessfulRegistration() {
   }
   return (
     <>
+      {loading && <Loading />}
       <Container>
         <Main>
           <h1>Excluir!</h1>
