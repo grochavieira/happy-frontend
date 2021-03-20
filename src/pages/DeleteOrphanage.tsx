@@ -26,7 +26,7 @@ export default function SuccessfulRegistration() {
   const handleOrphanageDelete = async () => {
     setLoading(true);
     try {
-      const response = await api.delete(`/orphanages/${params.id}`);
+      await api.delete(`/orphanages/${params.id}`);
       setLoading(false);
 
       toast.success("Orfanato excluído com sucesso");

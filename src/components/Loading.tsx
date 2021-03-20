@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React, from "react";
 import Lottie from "react-lottie";
 import animationData from "../images/loading.json";
 import { Container } from "../styles/components/loading";
 
 export default function Loading() {
-  const [animationState, setAnimationState] = useState({
-    isStopped: false,
-    isPaused: false,
-  });
-
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -25,8 +20,8 @@ export default function Loading() {
           options={defaultOptions}
           height={400}
           width={400}
-          isStopped={animationState.isStopped}
-          isPaused={animationState.isPaused}
+          isStopped={false}
+          isPaused={false}
         />
       </Container>
     </>
