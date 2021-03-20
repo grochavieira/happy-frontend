@@ -47,16 +47,28 @@ Uma aplicação para cadastrar orfanatos de São Bernardo do Campo (SP), para qu
 ## ⚙️ Funcionalidades
 
 - [x] Front-end;
-  - [x] Pagina Principal;
-  - [x] Pagina de Mapas;
-  - [x] Pagina para cadastro de orfanatos;
-  - [x] Pagina para detalhes de orfanatos
+  - [x] Pagina:
+    - [x] Principal;
+    - [x] de Mapas;
+    - [x] para cadastro de orfanatos;
+    - [x] para detalhes de orfanatos;
+    - [x] de Login;
+    - [x] de Cadastro de Usuário;
+    - [x] de esqueceu senha;
+    - [x] de resetar senha;
+    - [x] de Dashboard com orfanatos aceitos e pendentes;
+    - [x] de Exclusão;
+    - [x] de Sucesso ao cadastrar;
+    - [x] de Editar Orfanatos.
+  - [x] Limitação de Rotas para usuários sem Login no sistema;
+  - [x] Notificações com Toastify;
+  - [x] Tema dark;
 
 ---
 
 ## 🎨 Layout
 
-### front-end web
+- **[Layout Frontend](https://www.figma.com/file/dVBGraPAX3cyvcH3ynLh2a/Happy-Web-2.0-Copy)**
 
 ---
 
@@ -108,6 +120,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[Styled Components](https://styled-components.com/)**
 - **[Context](https://pt-br.reactjs.org/docs/context.html)**
 - **[cryptojs](https://www.npmjs.com/package/crypto-js)**
+- **[react-toastify](https://fkhadra.github.io/react-toastify/introduction)**
 
 > Veja o arquivo [package.json](https://github.com/grochavieira/happy-frontend/blob/master/package.json)
 
