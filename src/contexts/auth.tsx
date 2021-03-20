@@ -21,9 +21,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       const storagedToken = localStorage.getItem("@happy-token");
 
       if (storagedUser && storagedToken) {
-        console.log(storagedUser);
-        console.log(storagedToken);
-
         api.defaults.headers.Authorization = `Bearer ${JSON.parse(
           storagedToken
         )}`;
@@ -37,10 +34,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   async function signIn({ email, password }: any) {
-    console.log({ email, password });
     const { data } = await api.post("/tokens", { email, password });
 
-    console.log(data);
     if (data.error) {
       toast.warn(data.error);
       return false;
