@@ -13,7 +13,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<object | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadStoragedData() {
