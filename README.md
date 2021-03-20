@@ -43,7 +43,7 @@ Uma aplicação para cadastrar orfanatos de São Bernardo do Campo (SP), para qu
 O site pode ser acessado no link abaixo:
 
 <a align="center" href="https://grochavieira-happy-frontend.vercel.app/">
-    <img alt="site happy" src="https://img.shields.io/static/v1?label=Demonstra%C3%A7%C3%A3o&message=moveit&color=00D0E2&style=for-the-badge&logo=vercel">
+    <img alt="site happy" src="https://img.shields.io/static/v1?label=site&message=happy&color=00D0E2&style=for-the-badge&logo=vercel">
 </a>
 
 ---
