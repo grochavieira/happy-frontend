@@ -9,8 +9,8 @@
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat">
   
- 
 </p>
+
 <h1 align="center">
     <img src="./assets/logo_frontend.png" />
 </h1>
