@@ -76,7 +76,7 @@ O site pode ser acessado no link abaixo:
 ### Demonstração do projeto no meu LinkedIn:
 
 <a align="center" href="https://www.linkedin.com/posts/grochavieira_react-nodejs-typescript-activity-6779167554918346752-DjaF">
-    <img alt="clone do instagram demonstração" src="https://img.shields.io/static/v1?label=post&message=clone-instagram&color=0072B1&style=flat&logo=linkedin">
+    <img alt="happy-web" src="https://img.shields.io/static/v1?label=post&message=happy-web&color=0072B1&style=flat&logo=linkedin">
 </a>
 
 ---
