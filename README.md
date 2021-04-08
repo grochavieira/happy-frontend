@@ -73,6 +73,12 @@ O site pode ser acessado no link abaixo:
 
 - **[Layout Frontend](https://www.figma.com/file/dVBGraPAX3cyvcH3ynLh2a/Happy-Web-2.0-Copy)**
 
+### Demonstração do projeto no meu LinkedIn:
+
+<a align="center" href="https://www.linkedin.com/posts/grochavieira_react-nodejs-typescript-activity-6779167554918346752-DjaF">
+    <img alt="clone do instagram demonstração" src="https://img.shields.io/static/v1?label=post&message=clone-instagram&color=0072B1&style=flat&logo=linkedin">
+</a>
+
 ---
 
 ## 🚀 Como executar o projeto

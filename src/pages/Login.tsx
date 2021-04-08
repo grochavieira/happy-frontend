@@ -23,7 +23,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoginSaved, setIsLoginSaved] = useState(false);
-  console.log(signed);
 
   useEffect(() => {
     function getUserLogin() {
